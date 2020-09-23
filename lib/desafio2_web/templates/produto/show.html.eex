@@ -1,0 +1,33 @@
+<h1>Show Produto</h1>
+
+<ul>
+
+  <li>
+    <strong>Sku:</strong>
+    <%= @produto.sku %>
+  </li>
+
+  <li>
+    <strong>Nome:</strong>
+    <%= @produto.nome %>
+  </li>
+
+  <li>
+    <strong>Descricao:</strong>
+    <%= @produto.descricao %>
+  </li>
+
+  <li>
+    <strong>Quantidade:</strong>
+    <%= @produto.quantidade %>
+  </li>
+
+  <li>
+    <strong>Preco:</strong>
+    <%= @produto.preco %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.produto_path(@conn, :edit, @produto) %></span>
+<span><%= link "Back", to: Routes.produto_path(@conn, :index) %></span>
