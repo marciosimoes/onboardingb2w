@@ -3,9 +3,15 @@ use Mix.Config
 # Configure your database
 config :desafio2, Desafio2.Repo,
   database: "desafio2_development",
-  hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  hostname: "localhost"
+
+config :exredis,
+  host: "127.0.0.1",
+  port: 6379,
+  password: "",
+  db: 0,
+  reconnect: :no_reconnect,
+  max_queue: :infinity
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

@@ -3,7 +3,7 @@ defmodule Desafio2Web.ProdutoController do
 
   alias Desafio2.MyApp
   alias Desafio2.MyApp.Produto
-
+  
   def index(conn, _params) do
     produtos = MyApp.list_produtos()
     render(conn, "index.html", produtos: produtos)
