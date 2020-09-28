@@ -39,6 +39,7 @@ defmodule Desafio2.MixProject do
       {:mongodb_ecto, "~> 0.2.1"},
       {:exredis, ">= 0.2.4"},
       {:poison, "~> 3.1"},
+      {:tirexs, "~> 0.8.15"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2"},

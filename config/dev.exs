@@ -13,6 +13,10 @@ config :exredis,
   reconnect: :no_reconnect,
   max_queue: :infinity
 
+config :tirexs,
+  uri: "http://127.0.0.1:9200",
+  log: true
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

@@ -3,7 +3,8 @@ defmodule Desafio2Web.ProdutoController do
 
   alias Desafio2.MyApp
   alias Desafio2.MyApp.Produto
-  
+  alias Desafio2.MyApp.ElasticSearch
+
   def index(conn, _params) do
     produtos = MyApp.list_produtos()
     render(conn, "index.html", produtos: produtos)
@@ -11,6 +12,7 @@ defmodule Desafio2Web.ProdutoController do
 
   def new(conn, _params) do
     changeset = MyApp.change_produto(%Produto{})
+    ElasticSearch.post(:produto, :new, conn)
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -34,6 +36,7 @@ defmodule Desafio2Web.ProdutoController do
   def edit(conn, %{"id" => id}) do
     produto = MyApp.get_produto!(id)
     changeset = MyApp.change_produto(produto)
+    ElasticSearch.post(:produto, :update, conn, produto)
     render(conn, "edit.html", produto: produto, changeset: changeset)
   end
 
@@ -51,9 +54,10 @@ defmodule Desafio2Web.ProdutoController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}  = idDel) do
     produto = MyApp.get_produto!(id)
     {:ok, _produto} = MyApp.delete_produto(produto)
+    ElasticSearch.post(:produto, :destroy, conn, idDel)
 
     conn
     |> put_flash(:info, "Produto deleted successfully.")

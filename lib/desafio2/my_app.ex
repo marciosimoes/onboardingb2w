@@ -46,7 +46,7 @@ defmodule Desafio2.MyApp do
         {:ok, json} ->
           Produto.from_json(json)
         _ ->
-          nil
+          {:error, :not_found}
     end
   end
 
