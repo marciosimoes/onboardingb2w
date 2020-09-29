@@ -14,7 +14,8 @@ defmodule Desafio2.MyApp.ElasticSearch do
         match "nome", key
       end
     end
-    result = Tirexs.Query.create_resource(query)
+    {:ok, _status_code, resultado} = Tirexs.Query.create_resource(query)
+    resultado[:hits][:hits]
   end
 
   defp make_uri_for_post(index, type), do: "/#{index}/#{type}/"

@@ -15,11 +15,11 @@
   <tbody>
 <%= for produto <- @produtos do %>
     <tr>
-      <td><%= produto["sku"] %></td>
-      <td><%= produto["nome"] %></td>
-      <td><%= produto["descricao"] %></td>
-      <td><%= produto["quantidade"] %></td>
-      <td><%= produto["preco"] %></td>
+      <td><%= produto[:_source][:sku] %></td>
+      <td><%= produto[:_source][:nome] %></td>
+      <td><%= produto[:_source][:descricao] %></td>
+      <td><%= produto[:_source][:quantidade] %></td>
+      <td><%= produto[:_source][:preco] %></td>
     </tr>
 <% end %>
   </tbody>

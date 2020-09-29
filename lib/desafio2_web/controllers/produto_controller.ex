@@ -34,8 +34,8 @@ defmodule Desafio2Web.ProdutoController do
   end
 
   def search(conn, %{"nome" => nome}) do
-    get_search = ElasticSearch.get(:produtos, :new, "nome", nome)
-    render(conn, "search.html", produtos: get_search)
+    produtos = ElasticSearch.get(:produtos, :new, "nome", nome)
+    render(conn, "search.html", produtos: produtos)
   end
 
   def edit(conn, %{"id" => id}) do
