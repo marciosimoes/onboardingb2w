@@ -2,8 +2,8 @@ defmodule Desafio2Web.ProdutoController do
   use Desafio2Web, :controller
 
   alias Desafio2.MyApp
-  alias Desafio2.MyApp.Produto
   alias Desafio2.MyApp.ElasticSearch
+  alias Desafio2.MyApp.Produto
 
   def index(conn, _params) do
     produtos = MyApp.list_produtos()
@@ -12,13 +12,13 @@ defmodule Desafio2Web.ProdutoController do
 
   def new(conn, _params) do
     changeset = MyApp.change_produto(%Produto{})
-    ElasticSearch.post(:produto, :new, conn)
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"produto" => produto_params}) do
     case MyApp.create_produto(produto_params) do
       {:ok, produto} ->
+        ElasticSearch.post(:produtos, :new, conn, produto_params)
         conn
         |> put_flash(:info, "Produto created successfully.")
         |> redirect(to: Routes.produto_path(conn, :show, produto))
@@ -33,10 +33,14 @@ defmodule Desafio2Web.ProdutoController do
     render(conn, "show.html", produto: produto)
   end
 
+  def search(conn, %{"nome" => nome}) do
+    get_search = ElasticSearch.get(:produtos, :new, "nome", nome)
+    render(conn, "search.html", produtos: get_search)
+  end
+
   def edit(conn, %{"id" => id}) do
     produto = MyApp.get_produto!(id)
     changeset = MyApp.change_produto(produto)
-    ElasticSearch.post(:produto, :update, conn, produto)
     render(conn, "edit.html", produto: produto, changeset: changeset)
   end
 
@@ -45,6 +49,7 @@ defmodule Desafio2Web.ProdutoController do
 
     case MyApp.update_produto(produto, produto_params) do
       {:ok, produto} ->
+        ElasticSearch.post(:produtos, :update, conn, produto_params)
         conn
         |> put_flash(:info, "Produto updated successfully.")
         |> redirect(to: Routes.produto_path(conn, :show, produto))
@@ -57,8 +62,8 @@ defmodule Desafio2Web.ProdutoController do
   def delete(conn, %{"id" => id}  = idDel) do
     produto = MyApp.get_produto!(id)
     {:ok, _produto} = MyApp.delete_produto(produto)
-    ElasticSearch.post(:produto, :destroy, conn, idDel)
 
+    ElasticSearch.post(:produtos, :destroy, conn, idDel)
     conn
     |> put_flash(:info, "Produto deleted successfully.")
     |> redirect(to: Routes.produto_path(conn, :index))

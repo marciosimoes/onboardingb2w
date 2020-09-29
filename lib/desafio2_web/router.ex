@@ -21,6 +21,8 @@ defmodule Desafio2Web.Router do
     # update
     post "/produtos/:id", ProdutoController, :update
     patch "/produtos/:id", ProdutoController, :update
+    # search
+    get "/produtos/search/:nome", ProdutoController, :search
   end
 
   # Other scopes may use custom stacks.
