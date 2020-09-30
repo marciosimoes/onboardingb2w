@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :sku %>
-  <%= number_input f, :sku %>
+  <%= text_input f, :sku %>
   <%= error_tag f, :sku %>
 
   <%= label f, :nome %>
@@ -22,8 +22,12 @@
   <%= error_tag f, :quantidade %>
 
   <%= label f, :preco %>
-  <%= number_input f, :preco, step: "any" %>
+  <%= number_input f, :preco %>
   <%= error_tag f, :preco %>
+
+  <%= label f, :barras %>
+  <%= number_input f, :barras, step: "any" %>
+  <%= error_tag f, :barras %>
 
   <div>
     <%= submit "Save" %>

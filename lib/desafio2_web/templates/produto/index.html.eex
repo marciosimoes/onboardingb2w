@@ -8,6 +8,7 @@
       <th>Descricao</th>
       <th>Quantidade</th>
       <th>Preco</th>
+      <th>Codigo de Barras</th>
 
       <th></th>
     </tr>
@@ -20,6 +21,7 @@
       <td><%= produto.descricao %></td>
       <td><%= produto.quantidade %></td>
       <td><%= produto.preco %></td>
+      <td><%= produto.barras %></td>
 
       <td>
         <span><%= link "Show", to: Routes.produto_path(@conn, :show, produto) %></span>

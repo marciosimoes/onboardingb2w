@@ -1,4 +1,4 @@
-defmodule Desafio2.MyApp.ElasticSearch do
+defmodule Desafio2.ElasticService do
   alias Tirexs.HTTP, as: Api
   import Tirexs.Search
 

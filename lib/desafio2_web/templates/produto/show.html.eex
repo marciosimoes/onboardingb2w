@@ -27,6 +27,11 @@
     <%= @produto.preco %>
   </li>
 
+  <li>
+    <strong>Codigo de Barras:</strong>
+    <%= @produto.barras %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.produto_path(@conn, :edit, @produto) %></span>

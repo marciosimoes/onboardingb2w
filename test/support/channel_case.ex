@@ -27,14 +27,4 @@ defmodule Desafio2Web.ChannelCase do
       @endpoint Desafio2Web.Endpoint
     end
   end
-
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Desafio2.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Desafio2.Repo, {:shared, self()})
-    end
-
-    :ok
-  end
 end

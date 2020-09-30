@@ -5,8 +5,8 @@ defmodule Desafio2.MyApp do
 
   import Ecto.Query, warn: false
   alias Desafio2.Repo
+  alias Desafio2.RedisService
 
-  alias Desafio2.MyApp.Redis
   alias Desafio2.MyApp.Produto
 
   @doc """
@@ -38,9 +38,9 @@ defmodule Desafio2.MyApp do
   """
 
   def get_produto!(id) do
-    with {:error} <- Redis.get(id),
+    with {:error} <- RedisService.get(id),
       %Produto{} = produto <- Repo.get!(Produto, id) do
-        Redis.set(produto)
+        RedisService.set(produto)
         produto
       else
         {:ok, json} ->
@@ -81,7 +81,7 @@ defmodule Desafio2.MyApp do
 
   """
   def update_produto(%Produto{} = produto, attrs) do
-    Redis.del(produto)
+    RedisService.del(produto)
     produto
     |> Produto.changeset(attrs)
     |> Repo.update()
@@ -100,7 +100,7 @@ defmodule Desafio2.MyApp do
 
   """
   def delete_produto(%Produto{} = produto) do
-    Redis.del(produto)
+    RedisService.del(produto)
     Repo.delete(produto)
   end
 

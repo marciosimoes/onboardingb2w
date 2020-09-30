@@ -8,6 +8,7 @@
       <th>Descricao</th>
       <th>Quantidade</th>
       <th>Preco</th>
+      <th>Codigo de Barras</th>
 
       <th></th>
     </tr>
@@ -20,6 +21,7 @@
       <td><%= produto[:_source][:descricao] %></td>
       <td><%= produto[:_source][:quantidade] %></td>
       <td><%= produto[:_source][:preco] %></td>
+      <td><%= produto[:_source][:barras] %></td>
     </tr>
 <% end %>
   </tbody>

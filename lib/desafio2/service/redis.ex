@@ -1,4 +1,4 @@
-defmodule Desafio2.MyApp.Redis do
+defmodule Desafio2.RedisService do
   alias Exredis.Api
   alias Poison
 
