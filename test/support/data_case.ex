@@ -27,6 +27,13 @@ defmodule Desafio2.DataCase do
     end
   end
 
+  setup tags do
+    unless tags[:async] do
+      Mongo.Ecto.truncate(Desafio2.Repo, [])
+    end
+    :ok
+  end
+
   @doc """
   A helper that transforms changeset errors into a map of messages.
 

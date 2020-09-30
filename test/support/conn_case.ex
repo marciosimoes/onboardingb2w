@@ -30,4 +30,8 @@ defmodule Desafio2Web.ConnCase do
       @endpoint Desafio2Web.Endpoint
     end
   end
+
+  setup __tags do
+    {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
 end
