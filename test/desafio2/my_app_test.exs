@@ -1,5 +1,6 @@
 defmodule Desafio2.MyAppTest do
   use Desafio2.DataCase
+  use Timex
 
   alias Desafio2.MyApp
 
@@ -15,7 +16,6 @@ defmodule Desafio2.MyAppTest do
         attrs
         |> Enum.into(@valid_attrs)
         |> MyApp.create_produto()
-
       produto
     end
 
@@ -26,7 +26,7 @@ defmodule Desafio2.MyAppTest do
 
     test "get_produto!/1 returns the produto with given id" do
       produto = produto_fixture()
-      assert MyApp.get_produto!(produto.id) == produto
+      assert MyApp.get_produto!(produto.id).id == produto.id
     end
 
     test "create_produto/1 with valid data creates a produto" do
@@ -57,7 +57,7 @@ defmodule Desafio2.MyAppTest do
     test "update_produto/2 with invalid data returns error changeset" do
       produto = produto_fixture()
       assert {:error, %Ecto.Changeset{}} = MyApp.update_produto(produto, @invalid_attrs)
-      assert produto == MyApp.get_produto!(produto.id)
+      assert produto.id == MyApp.get_produto!(produto.id).id
     end
 
     test "delete_produto/1 deletes the produto" do
