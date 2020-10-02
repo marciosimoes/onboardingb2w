@@ -116,4 +116,16 @@ defmodule Desafio2.MyApp do
   def change_produto(%Produto{} = produto, attrs \\ %{}) do
     Produto.changeset(produto, attrs)
   end
+
+  ## Gerador de CSV com reporte dos produtos
+  def csv_content do
+    list_produtos = list_produtos()
+    produtos = for produto <- list_produtos do
+      [produto.sku, produto.nome, produto.descricao, produto.quantidade, produto.preco, produto.barras]
+    end
+    [["sku","nome","descricao","quantidade","preco","codigo de barras"] | produtos]
+    |> CSV.encode
+    |> Enum.to_list
+    |> to_string
+  end
 end

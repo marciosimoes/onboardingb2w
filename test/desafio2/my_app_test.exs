@@ -1,6 +1,5 @@
 defmodule Desafio2.MyAppTest do
   use Desafio2.DataCase
-  use Timex
 
   alias Desafio2.MyApp
 
