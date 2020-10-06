@@ -34,4 +34,4 @@
 </table>
 
 <span><%= link "New Produto", to: Routes.produto_path(@conn, :new) %></span> |
-<span><%= link "Gerar Relatório", to: Routes.report_url(@conn, :export) %></span>
+<span><%= link "Relatórios", to: Routes.report_url(@conn, :all) %></span>

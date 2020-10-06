@@ -1,0 +1,7 @@
+<p>Relatório criado com sucesso!</h1>
+<br>
+<br>
+<span><a href="../<%= @name %>">Fazer Download!</a></span>
+<br>
+<br>
+<span><%= link "Voltar", to: Routes.report_url(@conn, :all) %></span>

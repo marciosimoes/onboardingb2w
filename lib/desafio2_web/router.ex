@@ -24,7 +24,8 @@ defmodule Desafio2Web.Router do
     # search
     get "/produtos/search/:nome", ProdutoController, :search
     # report
-    get "/report", ReportController, :export
+    get "/reports", ReportController, :all
+    get "/reports/create", ReportController, :create
   end
 
   # Other scopes may use custom stacks.

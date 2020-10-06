@@ -1,0 +1,20 @@
+<h1>Lista de Relatórios</h1>
+
+<span><%= link "Gerar Novo", to: Routes.report_url(@conn, :create) %></span>
+
+<table>
+  <thead>
+    <tr>
+      <th>Arquivo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for file <- @files do %>
+    <tr>
+      <td><%= file %></td>
+      <td><a href="../images/reports/<%= file %>">Download</a></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
