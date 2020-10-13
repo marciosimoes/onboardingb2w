@@ -14,14 +14,19 @@ defmodule Desafio2Web.ReportController do
   def create(conn, _params) do
     name = "produtos_#{ to_string(NaiveDateTime.utc_now)}.csv"
     file_path = "assets/static/images/reports/#{name}"
-    file = File.open!(file_path, [:write, :utf8])
 
-    MyApp.csv_content
-    |> CSV.encode
-    |> Enum.each(&IO.write(file, &1))
+    case MyApp.csv_content(MyApp.list_produtos()) do
+      {:error, msg} ->
+        render(conn, "error.html", error: msg)
+      {:ok, content} ->
+        file = File.open!(file_path, [:write, :utf8])
+        content
+        |> CSV.encode
+        |> Enum.each(&IO.write(file, &1))
 
-    HttpService.send_email(name, file_path)
+        HttpService.send_email(name, file_path)
 
-    render(conn, "export.html", name: name)
+        render(conn, "export.html", name: name)
+    end
   end
 end

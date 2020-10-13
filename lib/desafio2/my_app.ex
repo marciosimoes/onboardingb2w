@@ -118,11 +118,23 @@ defmodule Desafio2.MyApp do
   end
 
   ## Gerador do conteudo do CSV de reporte
-  def csv_content do
-    list_produtos = list_produtos()
-    produtos = for produto <- list_produtos do
-      [produto.sku, produto.nome, produto.descricao, produto.quantidade, produto.preco, produto.barras]
+  def csv_content(produtos) do
+    case produtos do
+      [] ->
+        Sentry.capture_message("report_for_empty_list", extra: %{
+          reason: "não pode gerar relatorio vazio."
+        })
+        {:error, "não pode gerar relatorio vazio."}
+      list ->
+        list
+        produtos = for produto <- list do
+          [produto.sku, produto.nome, produto.descricao, produto.quantidade,
+              produto.preco, produto.barras]
+        end
+        {:ok, [
+          ["sku","nome","descricao","quantidade","preco","codigo de barras"]
+          | produtos]
+        }
     end
-    [["sku","nome","descricao","quantidade","preco","codigo de barras"] | produtos]
   end
 end

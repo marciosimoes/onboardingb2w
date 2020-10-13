@@ -49,7 +49,9 @@ defmodule Desafio2.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:csv, "~> 1.4.0"},
-      {:httpoison, "~> 1.6"}
+      {:httpoison, "~> 1.6"},
+      {:sentry, "8.0.0"},
+      {:hackney, "~> 1.8"}
     ]
   end
 
