@@ -4,4 +4,8 @@ defmodule Desafio2Web.PageController do
   def index(conn, _params) do
     render(conn, "index.html")
   end
+
+  def sentry_check(_conn, _params) do
+    raise "Hello from email service"
+  end
 end

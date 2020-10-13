@@ -1,4 +1,4 @@
-<p>Relatório criado com sucesso!</h1>
+<h2>Relatório criado com sucesso!</h2>
 <br>
 <br>
 <span><a href="../<%= @name %>">Fazer Download!</a></span>

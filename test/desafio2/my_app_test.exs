@@ -69,5 +69,9 @@ defmodule Desafio2.MyAppTest do
       produto = produto_fixture()
       assert %Ecto.Changeset{} = MyApp.change_produto(produto)
     end
+
+    test "erro ao tentar criar relatorio vazio" do
+      assert {:error, "não pode gerar relatorio vazio."} == MyApp.csv_content([])
+    end
   end
 end

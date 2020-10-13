@@ -26,6 +26,8 @@ defmodule Desafio2Web.Router do
     # report
     get "/reports", ReportController, :all
     get "/reports/create", ReportController, :create
+    # checando sentry
+    get "/sentry_check", PageController, :sentry_check
   end
 
   # Other scopes may use custom stacks.
