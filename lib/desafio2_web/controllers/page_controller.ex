@@ -6,6 +6,6 @@ defmodule Desafio2Web.PageController do
   end
 
   def sentry_check(_conn, _params) do
-    raise "Hello from email service"
+    raise "Hello world"
   end
 end
